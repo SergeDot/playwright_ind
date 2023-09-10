@@ -12,9 +12,9 @@ class BasePage:
         """This method opens a browser by the provided link"""
         self.page.goto(self.url)
 
-    def login(self):
-        self.page.locator(self.locators.USER_NAME).fill("standard_user")
-        self.page.locator(self.locators.PASSWORD).fill("secret_sauce")
+    def login(self, username, password):
+        self.page.locator(self.locators.USER_NAME).fill(username)
+        self.page.locator(self.locators.PASSWORD).fill(password)
         self.page.locator(self.locators.LOGIN_BUTTON).click()
 
     def logout(self):
@@ -26,3 +26,6 @@ class BasePage:
 
     def get_url(self):
         return self.page.url
+
+    def get_text(self, locator):
+        return self.page.locator(locator).inner_text()
